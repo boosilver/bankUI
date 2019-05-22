@@ -1,0 +1,85 @@
+<div class="container ">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  <div class="form-group row">
+    <H1>LOAN BY INVOICE</H1>
+  </div>
+  <form (ngSubmit)="onSubmit()" ngNativeValidate>
+
+    <div class="row">
+      <div class="field-label col-md-6 mx-auto">
+        <label for="BANK" class="text-muted">BANK</label>
+        <input type="text" class="form-control border-bottom" required [(ngModel)]="model.BANK" id="BANK" name="BANK">
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="field-label col-md-6 mx-auto">
+        <label for="FROM" class="text-muted">FROM</label>
+        <input type="text" class="form-control border-bottom" required [(ngModel)]="model.FROM" id="FROM" name="FROM">
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="field-label col-md-6 mx-auto">
+        <label for="DOC_LOAN" class="text-muted">DOCUMENT LOAN</label>
+        <input type="text" class="form-control border-bottom" required [(ngModel)]="model.DOC_LOAN" id="DOC_LOAN"
+          name="DOC_LOAN">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field-label col-md-6 mx-auto">
+        <label for="KEY" class="text-muted">DOCUMENT KEY</label>
+        <input type="number" class="form-control border-bottom" required [(ngModel)]="model.KEY" id="KEY" name="KEY">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field-label col-md-6 mx-auto">
+        <label for="LOAN_KEY" class="text-muted">LOAN KEY</label>
+        <input type="number" class="form-control " [(ngModel)]="model.LOAN_KEY" id="LOAN_KEY" name="LOAN_KEY" required>
+      </div>
+    </div>
+
+
+    <br>
+
+    <!-- ----------------------------------SUBMIT-------------------------------------- -->
+    <div class="row">
+      <div class="center">
+        <button type="button" class="w3-btn w3-grey w3-border w3-border-green w3-text-white w3-round-xlarge"
+          (click)="openModal(template)" style="text-shadow:1px 1px 0 #444">SUBMIT</button>
+      </div>
+    </div>
+
+    <ng-template #template>
+      <div class="modal-body text-center">
+    <pre class="card card-block card-header">
+      <p>BANK :{{this.model.BANK}}</p>
+      <p>FROM :{{this.model.FROM}}</p>
+      <p>DOCUMENT LOAN :{{this.model.DOC_LOAN}}</p>
+      <p>DOCUMENT KEY :{{this.model.KEY}}</p>
+      <p>LOAN KEY :{{this.model.LOAN_KEY}}</p>
+    </pre>
+        <p>Do you want to confirm?</p>
+
+        <button type="submit" class="btn btn-default" (click)="confirm()">Yes</button>
+        <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+      </div>
+    </ng-template>
+    <!-- ------------------------------------------------------------------------------ -->
+
+
+    <div class="row" id='statusfield' style='display:none;'>
+      <div class="field-label col-md-12 mx-auto">
+        <label for="status" class="text-muted">Status</label>
+        <textarea style="border: none; background-color: white" class="form-control border-bottom" readonly id="status"
+          name="status"></textarea>
+      </div>
+    </div>
+
+
+  </form>
+</div>

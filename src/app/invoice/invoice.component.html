@@ -1,0 +1,84 @@
+<div class="container ">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  <div class="form-group row">
+    <H1>CREATE INVOICE</H1>
+  </div>
+  <form (ngSubmit)="onSubmit()" ngNativeValidate>
+
+    <div class="row">
+      <div class="field-label col-md-6 mx-auto">
+        <label for="TO" class="text-muted">TO</label>
+        <input type="text" class="form-control border-bottom" required [(ngModel)]="model.TO" id="TO" name="TO">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field-label col-md-6 mx-auto">
+        <label for="FROM" class="text-muted">FROM</label>
+        <input type="text" class="form-control border-bottom" required [(ngModel)]="model.FROM" id="FROM" name="FROM">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field-label col-md-6 mx-auto">
+        <label for="INVOICE_KEY" class="text-muted">INVOICE KEY</label>
+        <input type="number" class="form-control " [(ngModel)]="model.INVOICE_KEY" id="INVOICE_KEY" name="INVOICE_KEY"
+          required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field-label col-md-6 mx-auto">
+        <label for="PO_KEY" class="text-muted">PURCHASE ORDER KEY</label>
+        <input type="number" class="form-control border-bottom" required [(ngModel)]="model.PO_KEY" id="PO_KEY"
+          name="PO_KEY">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field-label col-md-6 mx-auto">
+        <label for="VALUE" class="text-muted">VALUE</label>
+        <input type="number" class="form-control border-bottom" required [(ngModel)]="model.VALUE" id="VALUE"
+          name="VALUE">
+      </div>
+    </div>
+
+    <br>
+
+    <!-- ----------------------------------SUBMIT-------------------------------------- -->
+    <div class="row">
+      <div class="center">
+        <button type="button" class="w3-btn w3-grey w3-border w3-border-green w3-text-white w3-round-xlarge"
+          (click)="openModal(template)" style="text-shadow:1px 1px 0 #444">SUBMIT</button>
+      </div>
+    </div>
+
+    <ng-template #template>
+      <div class="modal-body text-center">
+        <pre class="card card-block card-header">
+      <p>TO :{{this.model.TO}}</p>
+      <p>FROM :{{this.model.FROM}}</p>
+      <p>PURCHASE ORDER ID :{{this.model.PO_KEY}}</p>
+      <p>INVOICE KEY :{{this.model.INVOICE_KEY}}</p>
+      <p>VALUE :{{this.model.VALUE}}</p>
+    </pre>
+        <p>Do you want to confirm?</p>
+
+        <button type="submit" class="btn btn-default" (click)="confirm()">Yes</button>
+        <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+      </div>
+    </ng-template>
+    <!-- ------------------------------------------------------------------------------ -->
+
+
+    <div class="row" id='statusfield' style='display:none;'>
+      <div class="field-label col-md-12 mx-auto">
+        <label for="status" class="text-muted">Status</label>
+        <textarea style="border: none; background-color: white" class="form-control border-bottom" readonly id="status"
+          name="status"></textarea>
+      </div>
+    </div>
+
+
+  </form>
+</div>

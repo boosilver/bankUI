@@ -1,0 +1,160 @@
+<div class="container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  <div class="form-group row">
+    <H1>INQUIRE INVOICE</H1>
+  </div>
+  <form (ngSubmit)="onSubmit()" ngNativeValidate>
+    <div class="form-group row">
+      <label for="INVOICE_ID" class="col-1 col-form-label text-right font-weight-bold">
+        No.
+      </label>
+      <div class="col-2">
+        <input type="number"  class="form-control" [(ngModel)]="model.INVOICE_ID" name="INVOICE_ID" id="INVOICE_ID" required>
+      </div>
+
+      <label for="PO_ID" class="col-1 col-form-label text-right font-weight-bold">
+        PO ID
+      </label>
+      <div class="col-3">
+
+        <input type="text" class="form-control border-bottom " [(ngModel)]="model.PO_ID"  id="PO_ID" name="PO_ID"
+          required>
+      </div>
+
+      <label for="SELLER" class="col-2 col-form-label text-right font-weight-bold">
+        Tax Seller ID
+      </label>
+      <div class="col-2">
+        <input type="text" class="form-control " [(ngModel)]="model.SELLER" name="SELLER" id="SELLER" required>
+      </div>
+      <div class="form-group row float-lg-right">
+        <div class="offset-3 ">
+          <button type="submit" class="w3-btn w3-grey w3-border w3-border-green w3-text-white w3-round-xlarge" style="text-shadow:1px 1px 0 #444">SUBMIT</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<br>
+
+
+
+<div class="container" id="result" style='display:none;'>
+
+  <!-- <h3> RESULT </h3>
+  <div class="row">
+    <label for="numEN" class="col-2 col-form-label text-right font-weight-bold">
+      ENDORSEMENT
+    </label>
+    <div class="col-1">
+      <input type="text" class="form-control border-bottom " name="numEN" id="numEN" value="0" style="border:none; text-align: center;font-weight: bold;"
+        readonly>
+    </div>
+
+    <label for="numFIN" class="col-2 col-form-label text-right font-weight-bold">
+      FINANCE
+    </label>
+    <div class="col-1">
+      <input type="text" class="form-control border-bottom " name="numFIN" id="numFIN" value="0" style="border:none; text-align: center; font-weight: bold;"
+        readonly>
+    </div>
+  </div>
+  <br> -->
+  
+  <ul class="list-group ">
+    <li class="list-group-item active" style="background-color: coral; border: coral; ">INVOICE</li>
+    <li class="list-group-item text-concat" *ngFor="let responseValue1 of responseValue">
+        <font class="font">Invoice ID : </font>{{ responseValue1.INVOICE_ID }}
+        <br>
+        <font class="font">Purchase order ID : </font>{{ responseValue1.PO_ID }}
+        <br>
+        <font class="font">Received day : </font>{{ responseValue1.RECEIVED_DAY }}
+        <br>
+        <font class="font">Seller :</font>{{ responseValue1.SELLER }}
+        <br> 
+        <font class="font">Number of Product sent: </font>{{ responseValue1.NUM_SENT }}
+        <br>
+        <font class="font">Installment Price: </font>{{ responseValue1.INSTALLMENT_PRICE }}
+        <br>
+        <font class="font">Product : </font>{{ responseValue1.PRODUCT }} 
+        <br>
+        <font class="font">Price Amount : </font>{{ responseValue1.PRICE }} THB
+        <br>
+        <font class="font">Number of Product :</font>{{ responseValue1.NUM_PRODUCT }}
+        <br> 
+        <font class="font">LOT :</font>{{ responseValue1.LOT }}
+        <br> 
+        <font class="font">Status :</font>{{ responseValue1.STATUS }} ...
+        <br> 
+        <font class="font">Finance Status :</font>{{ responseValue1.FINANCIAL_STATUS }}
+        <br> 
+        <font class="font">All Invoice  :</font>{{ responseValue1.ALL_INVOICE }}
+        <br> 
+      </li>
+    <!-- <li class="list-group-item active" style="background-color: rgb(58, 58, 58); border: rgb(58, 58, 58); ">ENDORSEMENT</li> -->
+    <li class="list-group-item text-concat" *ngFor="let responseValue2 of responseValueEN">
+      <ul class="list-group-flush">
+        <li class="list-group-item active" style="background-color: rgb(58, 58, 58); border: rgb(58, 58, 58); ">ENDORSEMENT</li>
+        <li class="list-group-item  ">
+          <font class="font">Identity : </font>
+          <br>{{ responseValue2.EndorsementIdentity }}
+          <br>
+          <font class="font">Invoice Identity :</font>
+          <br> {{ responseValue2.InvoiceIdentity }}
+          <br>
+          <font class="font">Public Key :</font>
+          <br> {{ responseValue2.PublicKey }}
+          <br>
+          <font class="font">Endorsement Time :</font> {{ responseValue2.EndorsementTime }}
+          <br>
+          <font class="font">Finance Identity :</font>
+          <br> {{ responseValue2.FinanceIdentity }}
+        </li>
+        <ul class="list-group-flush">
+
+          <li class="list-group-item  " *ngFor="let responseValue3 of responseValue2.FinanceList">
+            <ul class="list-group-flush">
+              <li class="list-group-item active " style="background-color: rgb(216, 42, 88); border:  rgb(216, 42, 88); ">FINANCE</li>
+              <li class="list-group-item  ">
+                <font class="font">Identity :</font>
+                <br>{{ responseValue3.FinanceIdentity}}
+                <br>
+                <font class="font">Endorsement Identity :</font>
+                <br> {{ responseValue3.EndorsementIdentity }}
+                <br>
+                <font class="font">Finance Running No. :</font> {{ responseValue3.FinanceRunningNo }}
+                <br>
+                <font class="font">Finance Time :</font> {{ responseValue3.FinanceTime }}
+                <br>
+                <font class="font">Invoice Amount Used :</font> {{ responseValue3.InvAmountUsed }} THB
+                <br>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </ul>
+    </li>
+
+
+  </ul>
+  <pre>
+
+        INV_JSON{{ jasontree | json }}
+        
+      </pre>
+
+</div>
+
+<div class="container" id="error" style='display:none;'>
+
+  <h3> ERROR </h3>
+  <div class="row">
+    <label for="erMass" class="col-2 col-form-label text-right font-weight-bold">
+      Massage
+    </label>
+    <div class="col-12">
+      <input type="text" class="form-control border-bottom " name="erMass" id="erMass" value="0" style="border:none; text-align: center;font-weight: bold;"
+        readonly>
+    </div>
+  </div>
+</div>
