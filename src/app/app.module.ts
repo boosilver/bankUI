@@ -20,6 +20,7 @@ import { AppComponent } from './app.component';
 import { EndorseComponent } from './endorse/endorse.component';
 import { CheckpoComponent } from './checkpo/checkpo.component';
 import { ReqverinvComponent } from './reqverinv/reqverinv.component';
+import { RejectendorseComponent } from './rejectendorse/rejectendorse.component';
 
 //------- End Component ----------
 
@@ -29,6 +30,7 @@ import { ReqverinvComponent } from './reqverinv/reqverinv.component';
     EndorseComponent,
     CheckpoComponent,
     ReqverinvComponent,
+    RejectendorseComponent,
    
     
 

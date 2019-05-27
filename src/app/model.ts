@@ -116,7 +116,6 @@ export class InquirePOByKeyFields {
   static sampleSubmitSr(): InquirePOByKeyFields {
     const sample: InquirePOByKeyFields = InquirePOByKeyFields.empty();
 
-    sample.USER = 'lotus';
     sample.KEY = '004';
     sample.TYPE = 'PO';
 
@@ -124,7 +123,6 @@ export class InquirePOByKeyFields {
   }
 
   constructor(
-    public USER: string,
     public KEY: string,
     public TYPE: string,
 
@@ -187,7 +185,7 @@ export class Loanbyinv {
 }
 // ------------------------------------------------- END ---------------------------------------------------------
 
-// ----------------------------------------- Request verify invoice ---------------------------------------------------------
+// ----------------------------------------- Request verify ---------------------------------------------------------
 export class Reqverinv {
   static empty(): Reqverinv {
     const emptyObj = empty(Reqverinv, 5);
@@ -198,7 +196,6 @@ export class Reqverinv {
     const sample: Reqverinv = Reqverinv.empty();
 
     sample.TO = 'lotus';
-    sample.BANK = 'bank';
     sample.DOC_LOAN = 'invoice';
     sample.KEY = '123';
     sample.LOAN_KEY = '00';
@@ -208,7 +205,6 @@ export class Reqverinv {
 
   constructor(
     public TO: string,
-    public BANK: string,
     public DOC_LOAN: string,
     public KEY: string,
     public LOAN_KEY: string,
@@ -229,7 +225,6 @@ export class TransactionEndorseInvoice {
     const sample: TransactionEndorseInvoice = TransactionEndorseInvoice.empty();
 
     sample.TO = 'themall';
-    sample.BANK = 'bank';
     sample.DOC_LOAN = 'invoice';
     sample.LOAN_KEY = '00';
     sample.PRICE_LOAN = '40';
@@ -239,7 +234,6 @@ export class TransactionEndorseInvoice {
 
   constructor(
     public TO: string,
-    public BANK: string,
     public DOC_LOAN: string,
     public LOAN_KEY: string,
     public PRICE_LOAN: string,
@@ -247,31 +241,27 @@ export class TransactionEndorseInvoice {
 }
 // ------------------------------------------------- END ---------------------------------------------------------
 
-// ----------------------------------------- Accept Endorse ---------------------------------------------------------
-export class Acceptendorse {
-  static empty(): Acceptendorse {
-    const emptyObj = empty(Acceptendorse, 4);
+// ------------------------------------------------- Reject endorse ---------------------------------------------------------
+export class RejectEndorse {
+  static empty(): RejectEndorse {
+    const emptyObj = empty(RejectEndorse, 3);
     return emptyObj;
   }
 
-  static sampleSubmitSr(): Acceptendorse {
-    const sample: Acceptendorse = Acceptendorse.empty();
+  static sampleSubmitSr(): RejectEndorse {
+    const sample: RejectEndorse = RejectEndorse.empty();
 
-    sample.BANK = 'bank';
-    sample.FORM = 'lotus';
-    sample.DOC_LOAN = 'invoice';
+    sample.TO = 'themall';
+    sample.DOC_LOAN = 'po';
     sample.LOAN_KEY = '00';
 
     return sample;
   }
 
   constructor(
-
-    public BANK: string,
-    public FORM: string,
+    public TO: string,
     public DOC_LOAN: string,
     public LOAN_KEY: string,
-
   ) { }
 }
 // ------------------------------------------------- END ---------------------------------------------------------

@@ -14,13 +14,6 @@
 
     <div class="row">
       <div class="field-label col-md-6 mx-auto">
-        <label for="BANK" class="text-muted">BANK</label>
-        <input type="text" class="form-control border-bottom" required [(ngModel)]="model.BANK" id="BANK" name="BANK">
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="field-label col-md-6 mx-auto">
         <label for="DOC_LOAN" class="text-muted">DOCUMENT LOAN</label>
         <input type="text" class="form-control border-bottom" required [(ngModel)]="model.DOC_LOAN" id="DOC_LOAN"
           name="DOC_LOAN">
@@ -56,7 +49,6 @@
       <div class="modal-body text-center">
     <pre class="card card-block card-header">
       <p>TO :{{this.model.TO}}</p>
-      <p>BANK :{{this.model.BANK}}</p>
       <p>DOCUMENT LOAN :{{this.model.DOC_LOAN}}</p>
       <p>LOAN KEY :{{this.model.LOAN_KEY}}</p>
       <p>PRICE FOR LOAN :{{this.model.PRICE_LOAN}}</p>

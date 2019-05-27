@@ -32,7 +32,6 @@ export class ReqverinvComponent implements OnInit {
 
   confirm(): void {
     this.model.TO = this.model.TO.trim();
-    this.model.BANK = this.model.BANK.trim();
     this.model.DOC_LOAN = this.model.DOC_LOAN.trim();
     this.model.KEY = Util.pad(Number(this.model.KEY));
     this.model.LOAN_KEY = Util.pad(Number(this.model.LOAN_KEY));

@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { TransactionEndorseInvoice } from '.././model';
+import { RejectEndorse } from '.././model';
 import { PROCURETOPAYService } from '../service/procuretopay.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import {Util} from '../../util/util'
 
 @Component({
-  selector: 'app-endorse',
-  templateUrl: './endorse.component.html',
-  styleUrls: ['./endorse.component.css']
+  selector: 'app-rejectendorse',
+  templateUrl: './rejectendorse.component.html',
+  styleUrls: ['./rejectendorse.component.css']
 })
-export class EndorseComponent implements OnInit {
-  model: TransactionEndorseInvoice = TransactionEndorseInvoice.empty();
+export class RejectendorseComponent implements OnInit {
+  model: RejectEndorse = RejectEndorse.empty();
   public loading = false;
   modalRef: BsModalRef;
   bsModalRef: BsModalRef;
@@ -18,31 +18,27 @@ export class EndorseComponent implements OnInit {
 
   constructor(
     private modalService: BsModalService,
-    private svc: PROCURETOPAYService,
-    // private _router: Router
+    private svc: PROCURETOPAYService
   ) { }
 
   ngOnInit() {
     var that = this;
     // setTimeout(function(){
-    that.model = TransactionEndorseInvoice.sampleSubmitSr();
+    that.model = RejectEndorse.sampleSubmitSr();
   }
-
-  openModal(template: EndorseComponent) {
+  openModal(template: RejectEndorse) {
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
-
 
   confirm(): void {
     this.model.TO = this.model.TO.trim();
     this.model.DOC_LOAN = this.model.DOC_LOAN.trim();
     this.model.LOAN_KEY = Util.pad(Number(this.model.LOAN_KEY));
-    this.model.PRICE_LOAN = Util.pad(Number(this.model.PRICE_LOAN));
 
-    console.log('Endorse DATA');
+    console.log('Reqverinvoice DATA');
     console.log('saving draft ' + JSON.stringify(this.model));
     this.loading = true;
-    this.svc.submitEndorseInvoice(this.model)
+    this.svc.RejectEndorse(this.model)
       .subscribe(
         sr => {
           this.loading = false;
@@ -54,7 +50,9 @@ export class EndorseComponent implements OnInit {
         },
         error => {
           this.loading = false;
+
           let header = 'Error';
+          // this.progressDialog.close();
           let message = error;
           (<HTMLInputElement>document.getElementById('status')).value = message;
           console.log('Error:' + message);
