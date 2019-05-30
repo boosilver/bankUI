@@ -12,7 +12,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 //------- Service --------
 import { PROCURETOPAYService } from './service/procuretopay.service';
-import { IDFProxyService } from './service/idf.Proxy.service';
 //------- End Service ----------
 
 //------- Component --------
@@ -45,7 +44,7 @@ import { RejectendorseComponent } from './rejectendorse/rejectendorse.component'
     ModalModule.forRoot()
 
   ],
-  providers: [PROCURETOPAYService, IDFProxyService],
+  providers: [PROCURETOPAYService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -29,15 +29,17 @@ export class EndorseComponent implements OnInit {
   }
 
   openModal(template: EndorseComponent) {
-    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+    if (this.model.TO.trim() && this.model.DOC_LOAN.trim() && this.model.LOAN_KEY && this.model.PRICE_LOAN) {
+      this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+    }
   }
 
 
   confirm(): void {
     this.model.TO = this.model.TO.trim();
     this.model.DOC_LOAN = this.model.DOC_LOAN.trim();
-    this.model.LOAN_KEY = Util.pad(Number(this.model.LOAN_KEY));
-    this.model.PRICE_LOAN = Util.pad(Number(this.model.PRICE_LOAN));
+    this.model.LOAN_KEY = this.model.LOAN_KEY;
+    this.model.PRICE_LOAN = this.model.PRICE_LOAN;
 
     console.log('Endorse DATA');
     console.log('saving draft ' + JSON.stringify(this.model));

@@ -27,13 +27,15 @@ export class RejectendorseComponent implements OnInit {
     that.model = RejectEndorse.sampleSubmitSr();
   }
   openModal(template: RejectEndorse) {
-    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+    if (this.model.TO.trim() && this.model.DOC_LOAN.trim() && this.model.LOAN_KEY) {
+      this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+    }
   }
 
   confirm(): void {
     this.model.TO = this.model.TO.trim();
     this.model.DOC_LOAN = this.model.DOC_LOAN.trim();
-    this.model.LOAN_KEY = Util.pad(Number(this.model.LOAN_KEY));
+    this.model.LOAN_KEY = this.model.LOAN_KEY;
 
     console.log('Reqverinvoice DATA');
     console.log('saving draft ' + JSON.stringify(this.model));

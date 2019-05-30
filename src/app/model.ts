@@ -18,94 +18,6 @@ const empty = function (constructor, numArgs: number) {
   return construct(constructor, nullArgs);
 }
 
-
-
-// ----------------------------------------- Create PO -------------------------------------------------------------------
-export class TransactionCreatePurchaseOrder {
-  static empty(): TransactionCreatePurchaseOrder {
-    const emptyObj = empty(TransactionCreatePurchaseOrder, 4);
-    return emptyObj;
-  }
-
-  static sampleSubmitSr(): TransactionCreatePurchaseOrder {
-    const sample: TransactionCreatePurchaseOrder = TransactionCreatePurchaseOrder.empty();
-
-    sample.TO = 'lotus';
-    sample.FROM = 'themall';
-    sample.PO_KEY = '002';
-    sample.VALUE = '250';
-
-    return sample;
-  }
-
-  constructor(
-    public TO: string,
-    public FROM: string,
-    public PO_KEY: string,
-    public VALUE: string,
-  ) { }
-}
-// ------------------------------------------ END -------------------------------------------------------------------
-
-// ----------------------------------------- CREATE INVOICE ---------------------------------------------------------
-export class TransactionCreateInvoice {
-  static empty(): TransactionCreateInvoice {
-    const emptyObj = empty(TransactionCreateInvoice, 6);
-    return emptyObj;
-  }
-
-  static sampleSubmitSr(): TransactionCreateInvoice {
-    const sample: TransactionCreateInvoice = TransactionCreateInvoice.empty();
-
-    sample.TO = 'themall';
-    sample.FROM = 'lotus';
-    sample.INVOICE_KEY = '004';
-    sample.PO_KEY = '000';
-    sample.VALUE = '200';
-
-
-    return sample;
-  }
-
-  constructor(
-    public TO: string,
-    public FROM: string,
-    public INVOICE_KEY: string,
-    public VALUE: string,
-    public PO_KEY: string,
-
-  ) { }
-}
-// ------------------------------------------------- END ---------------------------------------------------------
-
-
-export class TransactionFinanceInvoice {
-  static empty(): TransactionFinanceInvoice {
-    const emptyObj = empty(TransactionFinanceInvoice, 5);
-    return emptyObj;
-  }
-
-  static sampleSubmitSr(): TransactionFinanceInvoice {
-    const sample: TransactionFinanceInvoice = TransactionFinanceInvoice.empty();
-
-    sample.inv_no = '';
-    sample.DATE = todate;
-    sample.inv_tax_seller = '';
-    sample.finance_running_no = '';
-    sample.inv_amount_used = '100';
-
-    return sample;
-  }
-
-  constructor(
-    public inv_no: string,
-    public DATE: string,
-    public inv_tax_seller: string,
-    public finance_running_no: string,
-    public inv_amount_used: string
-  ) { }
-}
-
 //  ---------------------------------------------- Check PO key ------------------------------------------------
 export class InquirePOByKeyFields {
   static empty(): InquirePOByKeyFields {
@@ -116,7 +28,7 @@ export class InquirePOByKeyFields {
   static sampleSubmitSr(): InquirePOByKeyFields {
     const sample: InquirePOByKeyFields = InquirePOByKeyFields.empty();
 
-    sample.KEY = '004';
+    sample.KEY = '123';
     sample.TYPE = 'PO';
 
     return sample;
@@ -196,7 +108,7 @@ export class Reqverinv {
     const sample: Reqverinv = Reqverinv.empty();
 
     sample.TO = 'lotus';
-    sample.DOC_LOAN = 'invoice';
+    sample.DOC_LOAN = 'PO';
     sample.KEY = '123';
     sample.LOAN_KEY = '00';
 
@@ -225,7 +137,7 @@ export class TransactionEndorseInvoice {
     const sample: TransactionEndorseInvoice = TransactionEndorseInvoice.empty();
 
     sample.TO = 'themall';
-    sample.DOC_LOAN = 'invoice';
+    sample.DOC_LOAN = 'PO';
     sample.LOAN_KEY = '00';
     sample.PRICE_LOAN = '40';
 
@@ -252,7 +164,7 @@ export class RejectEndorse {
     const sample: RejectEndorse = RejectEndorse.empty();
 
     sample.TO = 'themall';
-    sample.DOC_LOAN = 'po';
+    sample.DOC_LOAN = 'PO';
     sample.LOAN_KEY = '00';
 
     return sample;
