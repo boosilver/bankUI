@@ -17,8 +17,8 @@
         </div>
         <div class="brand-card-body">
           <div>
-            <div class="text-value" *ngIf="DASHBOARD$">{{DASHBOARD$.DASHBOARD_DATA.PO}}</div>
-            <div class="text-uppercase text-muted small">Purchase Order</div>
+            <div class="text-value" *ngIf="DASHBOARD$">{{DASHBOARD$.DASHBOARD_DATA.LOAN_INFO}}</div>
+            <div class="text-uppercase text-muted small">Loan list</div>
           </div>
           <!-- <div>
               <div class="text-value">459</div>
@@ -40,8 +40,8 @@
         </div>
         <div class="brand-card-body">
           <div>
-            <div class="text-value" *ngIf="DASHBOARD$">{{DASHBOARD$.DASHBOARD_DATA.PO_WAIT}}</div>
-            <div class="text-uppercase text-muted small">Purchase Order wait</div>
+            <div class="text-value" *ngIf="DASHBOARD$">{{DASHBOARD$.DASHBOARD_DATA.LOAN_INFO_WAIT}}</div>
+            <div class="text-uppercase text-muted small">Loan wait</div>
           </div>
           <!-- <div>
             <div class="text-value">459</div>
@@ -63,8 +63,8 @@
         </div>
         <div class="brand-card-body">
           <div>
-            <div class="text-value" *ngIf="DASHBOARD$">{{DASHBOARD$.DASHBOARD_DATA.INVOICE}}</div>
-            <div class="text-uppercase text-muted small">Invoice</div>
+            <div class="text-value" *ngIf="DASHBOARD$">{{DASHBOARD$.DASHBOARD_DATA.ENDORSE_LOAN}}</div>
+            <div class="text-uppercase text-muted small">Endrose list</div>
           </div>
           <!-- <div>
               <div class="text-value">459</div>
@@ -86,8 +86,8 @@
         </div>
         <div class="brand-card-body">
           <div>
-            <div class="text-value" *ngIf="DASHBOARD$">{{DASHBOARD$.DASHBOARD_DATA.INVOICE_WAIT}}</div>
-            <div class="text-uppercase text-muted small">Invoice wait</div>
+            <div class="text-value" *ngIf="DASHBOARD$">{{DASHBOARD$.DASHBOARD_DATA.ENDORSE_LOAN_WAIT}}</div>
+            <div class="text-uppercase text-muted small">Endrose wait</div>
           </div>
           <!-- <div>
               <div class="text-value">459</div>
@@ -104,6 +104,7 @@
       <thead>
         <tr>
           <th>Key</th>
+          <th>Loan Key</th>
           <th>Company</th>
           <th>Date registered</th>
           <th>Type</th>
@@ -114,6 +115,7 @@
         <!--  list คือตัวแปรของเรา -->
         <tr *ngFor="let key of DASHBOARD$.DASHBOARD_LIST">
           <td>{{key.KEY}}</td>
+          <td>{{key.LOAN_KEY}}</td>
           <td>{{key.COMPANY}}</td>
           <td>{{key.DATE}}</td>
           <td>{{key.TYPE}}</td>

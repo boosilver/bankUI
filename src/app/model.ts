@@ -187,10 +187,10 @@ export interface Myinterfacedata {
 }
 
 export interface DashboardData {
-  PO: number
-  PO_WAIT: number
-  PO_COMPLETE: number
-  INVOICE: number
+  LOAN_INFO: number
+  LOAN_INFO_WAIT: number
+  ENDORSE_LOAN: number
+  ENDORSE_LOAN_WAIT: number
   INVOICE_WAIT: number
   INVOICE_COMPLETE: number
 }
@@ -200,6 +200,7 @@ export interface DashboardList {
   DATE: string
   TYPE: string
   KEY: string
+  LOAN_KEY: string
   STATUS: string
 }
 // ------------------------------------------------- END ---------------------------------------------------------
