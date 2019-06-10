@@ -9,14 +9,19 @@ import { environment } from '../../environments/environment';
 import { Http, Headers, Request, RequestMethod, Response, ResponseContentType } from '@angular/http';
 import {
   TransactionEndorseInvoice,
-  InquireInvoiceByKeyFields, InquirePOByKeyFields, Loanbyinv, Reqverinv,RejectEndorse
+  InquireInvoiceByKeyFields, InquirePOByKeyFields, Loanbyinv, Reqverinv,RejectEndorse,Myinterfacedata
 } from '../model';
+
+import { HttpClient } from '@angular/common/http'
+
 
 @Injectable()
 export class PROCURETOPAYService {
 
   constructor(
-    private http: Http
+    private http: Http,
+    private httpClient: HttpClient
+
   ) { }
 
   createAuthorizationHeader(headers: Headers) {
@@ -81,7 +86,7 @@ export class PROCURETOPAYService {
 
   // --------------------------------------------- Check PO key -----------------------------------------------------------
   InquirePOByKeyFields(model: InquirePOByKeyFields): Observable<any> {
-    const url = environment.backendBaseUrl + 'GetValue';//asset.service.request
+    const url = environment.backendbank + 'GetValue';//asset.service.request
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
     return this.http.post(url, model, {
@@ -110,6 +115,29 @@ export class PROCURETOPAYService {
   }
   // -------------------------------------------------- End key -----------------------------------------------------------
 
+  // --------------------------------------------- Get Dashboard -----------------------------------------------------------
 
+  dashboard(): Observable<Myinterfacedata> {
+    const url = environment.backendbank + 'GetList_Loan';
+    // const url = 'assets/config.json';
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    console.log(this.httpClient.get(url))
+    return this.httpClient.get<Myinterfacedata>(url)
+  }
+
+  dashboardlist(): Observable<Myinterfacedata> {
+    const url = environment.backendbank + 'GetList_Loan';
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get(url, {
+      headers: headers
+    }).map((res: Response) => {
+      return res.json();
+      // return res.json()[0];
+    })
+      .catch(this.handleError);
+  }
+  // -------------------------------------------------- End  -----------------------------------------------------------
 
 }

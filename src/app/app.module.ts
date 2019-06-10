@@ -20,6 +20,7 @@ import { EndorseComponent } from './endorse/endorse.component';
 import { CheckpoComponent } from './checkpo/checkpo.component';
 import { ReqverinvComponent } from './reqverinv/reqverinv.component';
 import { RejectendorseComponent } from './rejectendorse/rejectendorse.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 //------- End Component ----------
 
@@ -30,6 +31,7 @@ import { RejectendorseComponent } from './rejectendorse/rejectendorse.component'
     CheckpoComponent,
     ReqverinvComponent,
     RejectendorseComponent,
+    DashboardComponent,
    
     
 

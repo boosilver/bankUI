@@ -1,0 +1,159 @@
+<div class="container" *ngIf="showUI">
+  <ngx-loading [show]="loading"></ngx-loading>
+  <br>
+  <div class="form-group row">
+    <H1>DASHBOARD</H1>
+  </div>
+  <div class="row">
+    <!-- collum1 -->
+    <div class="col-sm-6 col-lg-3">
+      <div class="brand-card">
+        <div class="brand-card-header bg-po">
+          <img src="../images/100.png">
+          <!-- <i class="fa fa-po"></i>
+          <div class="chart-wrapper">
+            <canvas id="social-box-chart-1" height="90"></canvas>
+          </div> -->
+        </div>
+        <div class="brand-card-body">
+          <div>
+            <div class="text-value" *ngIf="DASHBOARD$">{{DASHBOARD$.DASHBOARD_DATA.PO}}</div>
+            <div class="text-uppercase text-muted small">Purchase Order</div>
+          </div>
+          <!-- <div>
+              <div class="text-value">459</div>
+              <div class="text-uppercase text-muted small">feeds</div>
+            </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- /.col-->
+
+    <!-- collum2 -->
+    <div class="col-sm-6 col-lg-3">
+      <div class="brand-card">
+        <div class="brand-card-header bg-invoice">
+          <!-- <i class="fa fa-invoice"></i>
+          <div class="chart-wrapper">
+            <canvas id="social-box-chart-1" height="90"></canvas>
+          </div> -->
+        </div>
+        <div class="brand-card-body">
+          <div>
+            <div class="text-value" *ngIf="DASHBOARD$">{{DASHBOARD$.DASHBOARD_DATA.PO_WAIT}}</div>
+            <div class="text-uppercase text-muted small">Purchase Order wait</div>
+          </div>
+          <!-- <div>
+            <div class="text-value">459</div>
+            <div class="text-uppercase text-muted small">feeds</div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- /.col-->
+
+    <!-- collum3 -->
+    <div class="col-sm-6 col-lg-3">
+      <div class="brand-card">
+        <div class="brand-card-header bg-success">
+          <!-- <i class="fa fa-success"></i>
+          <div class="chart-wrapper">
+            <canvas id="social-box-chart-1" height="90"></canvas>
+          </div> -->
+        </div>
+        <div class="brand-card-body">
+          <div>
+            <div class="text-value" *ngIf="DASHBOARD$">{{DASHBOARD$.DASHBOARD_DATA.INVOICE}}</div>
+            <div class="text-uppercase text-muted small">Invoice</div>
+          </div>
+          <!-- <div>
+              <div class="text-value">459</div>
+              <div class="text-uppercase text-muted small">feeds</div>
+            </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- /.col-->
+
+    <!-- collum4 -->
+    <div class="col-sm-6 col-lg-3">
+      <div class="brand-card">
+        <div class="brand-card-header bg-wait">
+          <!-- <i class="fa fa-wait"></i>
+          <div class="chart-wrapper">
+            <canvas id="social-box-chart-1" height="90"></canvas>
+          </div> -->
+        </div>
+        <div class="brand-card-body">
+          <div>
+            <div class="text-value" *ngIf="DASHBOARD$">{{DASHBOARD$.DASHBOARD_DATA.INVOICE_WAIT}}</div>
+            <div class="text-uppercase text-muted small">Invoice wait</div>
+          </div>
+          <!-- <div>
+              <div class="text-value">459</div>
+              <div class="text-uppercase text-muted small">feeds</div>
+            </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- /.col-->
+
+    <!-- Table -->
+    <br>
+    <table class="table table-responsive-sm table-hover table-outline mb-0 table-striped table-light  ">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Company</th>
+          <th>Date registered</th>
+          <th>Type</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!--  list คือตัวแปรของเรา -->
+        <tr *ngFor="let key of DASHBOARD$.DASHBOARD_LIST">
+          <td>{{key.KEY}}</td>
+          <td>{{key.COMPANY}}</td>
+          <td>{{key.DATE}}</td>
+          <td>{{key.TYPE}}</td>
+          <td>
+            <span class="badge badge-success">{{key.STATUS}}</span>
+          </td>
+        </tr>
+        <!-- <tr>
+                <td>Avram Tarasios</td>
+                <td>2012/02/01</td>
+                <td>Staff</td>
+                <td>
+                  <span class="badge badge-danger">Used</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Quintin Ed</td>
+                <td>2012/02/01</td>
+                <td>Admin</td>
+                <td>
+                  <span class="badge badge-secondary">Reject</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Enéas Kwadwo</td>
+                <td>2012/03/01</td>
+                <td>Member</td>
+                <td>
+                  <span class="badge badge-warning">Pending</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Agapetus Tadeáš</td>
+                <td>2012/01/21</td>
+                <td>Staff</td>
+                <td>
+                  <span class="badge badge-success">Active</span>
+                </td>
+              </tr> -->
+      </tbody>
+    </table>
+  </div>
+</div>
