@@ -21,14 +21,14 @@ const empty = function (constructor, numArgs: number) {
 //  ---------------------------------------------- Check PO key ------------------------------------------------
 export class InquirePOByKeyFields {
   static empty(): InquirePOByKeyFields {
-    const emptyObj = empty(InquirePOByKeyFields, 5);
+    const emptyObj = empty(InquirePOByKeyFields, 2);
     return emptyObj;
   }
 
   static sampleSubmitSr(): InquirePOByKeyFields {
     const sample: InquirePOByKeyFields = InquirePOByKeyFields.empty();
 
-    sample.KEY = '123';
+    sample.KEY = '100';
     sample.TYPE = 'PO';
 
     return sample;
