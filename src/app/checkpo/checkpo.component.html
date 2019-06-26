@@ -7,11 +7,11 @@
   <form (ngSubmit)="onSubmit()" ngNativeValidate>
 
     <div class="form-group row">
-      <label for="KEY" class="col-2 col-form-label text-right font-weight-bold">
-        KEY
+      <label for="user" class="col-2 col-form-label text-right font-weight-bold">
+        User
       </label>
       <div class="col-2">
-        <input type="number" class="form-control " [(ngModel)]="model.KEY" name="KEY" id="KEY" required>
+        <input type="text" class="form-control " [(ngModel)]="model.user" name="user" id="user" required>
       </div>
 
       <label for="TYPE" class="col-2 col-form-label text-right font-weight-bold">TYPE</label>
@@ -20,6 +20,10 @@
           [ngModelOptions]="{standalone: true}">
           <option value="PO">Purchase Order</option>
           <option value="INVOICE">Invoice</option>
+          <option value="ENDORSE_LOAN">Endorse Loan</option>
+          <option value="LOAN_PO">Loan by PO</option>
+          <option value="LOAN_INVOICE">Loan by Invoice</option>
+
         </select>
       </div>
     
@@ -44,124 +48,97 @@
 
 <div class="container" id="result" style='display:none;'>
 
-  <!-- <h3> RESULT </h3>
-  <div class="row">
-    <label for="numEN" class="col-2 col-form-label text-right font-weight-bold">
-      ENDORSEMENT
-    </label>
-    <div class="col-1">
-      <input type="text" class="form-control border-bottom " name="numEN" id="numEN" value="0" style="border:none; text-align: center;font-weight: bold;"
-        readonly>
-    </div>
-
-    <label for="numFIN" class="col-2 col-form-label text-right font-weight-bold">
-      FINANCE
-    </label>
-    <div class="col-1">
-      <input type="text" class="form-control border-bottom " name="numFIN" id="numFIN" value="0" style="border:none; text-align: center; font-weight: bold;"
-        readonly>
-    </div>
-  </div>
-  <br> -->
-
-  <ul class="list-group ">
-    <li class="list-group-item active" style="background-color: coral; border: coral; ">DATA</li>
-    <li class="list-group-item text-concat" *ngFor="let responseValue1 of responseValue">
-      <font class="font">Date : </font>{{ responseValue1.DATE }}
-      <br>
-      <font class="font">ID KEY :</font>{{ responseValue1.PO_KEY }}
-      <br>
-      <font class="font">TO : </font>{{ responseValue1.TO }}
-      <br>
-      <font class="font">FROM : </font>{{ responseValue1.FROM }}
-      <br>
-      <font class="font">TYPE : </font>{{ responseValue1.TYPE }}
-      <br>
-      <font class="font">Address :</font>{{ responseValue1.ADDRESS }}
-      <br>
-      <font class="font">Email :</font>{{ responseValue1.EMAIL }}
-      <br>
-      <font class="font">Tel Number :</font>{{ responseValue1.TEL_NUMBER }}
-      <br>
-      <font class="font">Tax ID :</font>{{ responseValue1.TAX_ID }}
-      <br>
-      <font class="font">Delivery Address :</font>{{ responseValue1.ADDRESS }}
-      <br>
-      <font class="font">Product :</font>{{ responseValue1.PRODUCT }}
-      <br>
-      <font class="font">Num Product :</font>{{ responseValue1.NUM_PRODUCT }}
-      <br>
-      <font class="font">Value :</font>{{ responseValue1.VALUE }}
-      <br>
-      <font class="font">Price :</font>{{ responseValue1.PRICE }}
-      <br>
-      <font class="font">Vat :</font>{{ responseValue1.VAT }}
-      <br>
-      <font class="font">Total Price :</font>{{ responseValue1.TOTAL_PRICE }}
-      <br>
-      <font class="font">Delivery Date :</font>{{ responseValue1.DELIVERY_DATE }}
-      <br>
-      <font class="font">Payment :</font>{{ responseValue1.PAYMENT }}
-      <br>
-      <font class="font">Detail :</font>{{ responseValue1.DETAIL }}
-      <br>
-
-    </li>
-
-    <!-- <li class="list-group-item active" style="background-color: rgb(58, 58, 58); border: rgb(58, 58, 58); ">ENDORSEMENT</li> -->
-    <li class="list-group-item text-concat" *ngFor="let responseValue2 of responseValueEN">
-      <ul class="list-group-flush">
-        <li class="list-group-item active" style="background-color: rgb(58, 58, 58); border: rgb(58, 58, 58); ">
-          ENDORSEMENT</li>
-        <li class="list-group-item  ">
-          <font class="font">Identity : </font>
-          <br>{{ responseValue2.EndorsementIdentity }}
-          <br>
-          <font class="font">Invoice Identity :</font>
-          <br> {{ responseValue2.InvoiceIdentity }}
-          <br>
-          <font class="font">Public Key :</font>
-          <br> {{ responseValue2.PublicKey }}
-          <br>
-          <font class="font">Endorsement Time :</font> {{ responseValue2.EndorsementTime }}
-          <br>
-          <font class="font">Finance Identity :</font>
-          <br> {{ responseValue2.FinanceIdentity }}
-        </li>
-
-
-        <ul class="list-group-flush">
-
-          <li class="list-group-item  " *ngFor="let responseValue3 of responseValue2.FinanceList">
-            <ul class="list-group-flush">
-              <li class="list-group-item active "
-                style="background-color: rgb(216, 42, 88); border:  rgb(216, 42, 88); ">FINANCE</li>
-              <li class="list-group-item  ">
-                <font class="font">Identity :</font>
-                <br>{{ responseValue3.FinanceIdentity}}
-                <br>
-                <font class="font">Endorsement Identity :</font>
-                <br> {{ responseValue3.EndorsementIdentity }}
-                <br>
-                <font class="font">Finance Running No. :</font> {{ responseValue3.FinanceRunningNo }}
-                <br>
-                <font class="font">Finance Time :</font> {{ responseValue3.FinanceTime }}
-                <br>
-                <font class="font">Invoice Amount Used :</font> {{ responseValue3.InvAmountUsed }} THB
-                <br>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </ul>
-    </li>
+    <!-- Table -->
+    <br>
+    <table class="table table-responsive-sm table-hover table-outline mb-0 table-striped table-light pointer ">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Loan Key</th>
+          <th>Company</th>
+          <th>Date registered</th>
+          <th>Type</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!--  list คือตัวแปรของเรา -->
+        <tr (click)="openModal(template,key)" *ngFor="let key of Inquire$.DASHBOARD_LIST">
+          <td>{{key.KEY}}</td>
+          <td>{{key.LOAN_KEY}}</td>
+          <td>{{key.COMPANY}}</td>
+          <td>{{key.DATE}}</td>
+          <td>{{key.TYPE}}</td>
+          <td>
+            <span class="badge badge-success">{{key.STATUS}}</span>
+          </td>
+        </tr>
+        <!-- <tr>
+                <td>Avram Tarasios</td>
+                <td>2012/02/01</td>
+                <td>Staff</td>
+                <td>
+                  <span class="badge badge-danger">Used</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Quintin Ed</td>
+                <td>2012/02/01</td>
+                <td>Admin</td>
+                <td>
+                  <span class="badge badge-secondary">Reject</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Enéas Kwadwo</td>
+                <td>2012/03/01</td>
+                <td>Member</td>
+                <td>
+                  <span class="badge badge-warning">Pending</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Agapetus Tadeáš</td>
+                <td>2012/01/21</td>
+                <td>Staff</td>
+                <td>
+                  <span class="badge badge-success">Active</span>
+                </td>
+              </tr> -->
+      </tbody>
+    </table>
+    <ng-template #template>
+      <div class="modal-body text-center">
+        <pre class="card card-block card-header text-left">
+        <p style="text-align: right; margin-right:3px; font-weight: bold; font-size:32" *ngIf="this.body.FROM">{{this.body.FROM}}</p>
+        <p style="text-align: right; margin-right:3px; font-weight: bold; font-size:32" *ngIf="this.body.TYPE">{{this.body.TYPE}}</p>
+        <p style="text-align: right;" *ngIf="this.body.KEY" ><span class="font">Document No :</span>{{this.body.KEY}}</p>
+        <p style="text-align: right;" *ngIf="this.body.PO_KEY"><span class="font">Reference No :</span>{{this.body.PO_KEY}}</p>
+        <p style="text-align: right;" *ngIf="this.body.DATE"><span class="font">Date :</span>{{this.body.DATE}}</p>
+        <hr>
+        <p *ngIf="this.body.TO" ><span class="font">To :</span>{{this.body.TO}}</p>
+        <p *ngIf="this.body.BANK"><span class="font">Bank :</span>{{this.body.BANK}}</p>
+        <p *ngIf="this.body.EMAIL"><span class="font">Email :</span>{{this.body.EMAIL}}</p>
+        <p *ngIf="this.body.TEL_NUMBER"><span class="font">Tel Number :</span>{{this.body.TEL_NUMBER}}</p>
+        <p *ngIf="this.body.TAX_ID"><span class="font">Tax ID :</span>{{this.body.TAX_ID}}</p>
+        <p id = "address" *ngIf="this.body.DELIVERY_ADDRESS"><span class="font">Delivery Address :</span>{{this.body.DELIVERY_ADDRESS}}</p>
+        <p *ngIf="this.body.DELIVERY_DATE"><span class="font">Delivery Date :</span>{{this.body.DELIVERY_DATE}}</p>
+        <p *ngIf="this.body.PAYMENT"><span class="font">Payment Date :</span>{{this.body.PAYMENT}}</p>
+        <p id = "address" *ngIf="this.body.ADDRESS"><span class="font">Address :</span>{{this.body.ADDRESS}}</p>
+        <p *ngIf="this.body.PRODUCT"><span class="font">Product :</span>{{this.body.PRODUCT}}</p>
+        <p *ngIf="this.body.NUM_PRODUCT"><span class="font">Number of Product :</span>{{this.body.NUM_PRODUCT}}</p>
+        <p *ngIf="this.body.VALUE"><span class="font">Value :</span>{{this.body.VALUE}}</p>
+        <p *ngIf="this.body.PRICE"><span class="font">Price :</span>{{this.body.PRICE}}</p>
+        <p *ngIf="this.body.VAT"><span class="font">VAT :</span>{{this.body.VAT}}</p>
+        <p *ngIf="this.body.TOTAL_PRICE"><span class="font">Total :</span>{{this.body.TOTAL_PRICE}}</p>
+        <p *ngIf="this.body.LOAN_AMOUNT"><span class="font">Loan Amount :</span>{{this.body.LOAN_AMOUNT}}</p>
+        <p *ngIf="this.body.INSTALLMENT"><span class="font">Installment period :</span>{{this.body.INSTALLMENT}}</p>
+        <p *ngIf="this.body.LOAN_AMOUNT"><span class="font">Loan Amount :</span>{{this.body.LOAN_AMOUNT}}</p>
+        <p *ngIf="this.body.PO_KEY"><span class="font">Purchase Order Key :</span>{{this.body.PO_KEY}}</p>
+        <p *ngIf="this.body.INVOICE_KEY"><span class="font">Invoice Key :</span>{{this.body.INVOICE_KEY}}</p>
+        <p *ngIf="this.body.LOAN_KEY"><span class="font">Loan Key :</span>{{this.body.LOAN_KEY}}</p>
 
 
-  </ul>
-  <pre>
-
-        DATA_JSON{{ jasontree | json }}
-        
       </pre>
 
 </div>

@@ -16,6 +16,21 @@
     text-align:justify;
   }
 
+  .font{
+    font-weight: bold;
+    color: rgb(60, 145, 194);
+  }
+  
+  #address{
+    white-space: pre-wrap;
+    /* width:100px; */
+    /* word-wrap:break-word; */
+  }
+  
+  td {
+    cursor : pointer
+  }
+
 
 .active{
     font-weight: bold;

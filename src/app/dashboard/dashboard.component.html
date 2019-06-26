@@ -9,7 +9,7 @@
     <div class="col-sm-6 col-lg-3">
       <div class="brand-card">
         <div class="brand-card-header bg-po">
-          <img src="../../assets/images/boss.jpg" height="42" width="42">
+          <img src="../images/100.png">
           <!-- <i class="fa fa-po"></i>
           <div class="chart-wrapper">
             <canvas id="social-box-chart-1" height="90"></canvas>
@@ -189,6 +189,30 @@
         <p *ngIf="this.body.LOAN_KEY"><span class="font">Loan Key :</span>{{this.body.LOAN_KEY}}</p>
 
       </pre>
+
+      <button style="background-color: red; color:white;" type="button" class="btn btn-default" (click)="confirm(rejecttemplate)">reject</button>
+      </div>
+    </ng-template>
+
+    <ng-template style="display: block" #rejecttemplate>
+      <div class="modal-body text-center">
+        <pre class="card card-block card-header text-left">
+          <p style="color:red; text-align: center">If you reject your transaction are delete and can't use</p>
+          <p style="color:red; text-align: center">Do you want to reject?</p>
+            </pre>
+
+        <button type="button" class="btn btn-primary" (click)="confirmreject(successrejecttemplate)">Yes</button>
+        <button type="button" class="btn btn-default" (click)="decline(template)">No</button>
+      </div>
+    </ng-template>
+
+    <ng-template #successrejecttemplate>
+      <div class="modal-body text-center">
+        <pre class="card card-block card-header text-left">
+            <p style="color:red; text-align: center">{{message}}</p>
+              </pre>
+
+        <button type="button" class="btn btn-primary" (click)="Ok()">Ok</button>
       </div>
     </ng-template>
   </div>

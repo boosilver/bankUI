@@ -42,6 +42,34 @@ export class InquirePOByKeyFields {
 }
 //  ---------------------------------------------- END key -----------------------------------------------------------
 
+
+
+//  ---------------------------------------------- Inquire data key ------------------------------------------------
+export class InquireData {
+  static empty(): InquireData {
+    const emptyObj = empty(InquireData, 2);
+    return emptyObj;
+  }
+
+  static sampleSubmitSr(): InquireData {
+    const sample: InquireData = InquireData.empty();
+
+    sample.user = 'themall';
+    sample.TYPE = 'PO';
+
+    return sample;
+  }
+
+  constructor(
+    public user: string,
+    public TYPE: string,
+
+  ) { }
+}
+//  ---------------------------------------------- END key -----------------------------------------------------------
+
+
+
 //  ---------------------------------------------- Check Invoice key ------------------------------------------------
 export class InquireInvoiceByKeyFields {
   static empty(): InquireInvoiceByKeyFields {

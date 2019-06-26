@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 
 import { Http, Headers, Request, RequestMethod, Response, ResponseContentType } from '@angular/http';
 import {
-  TransactionEndorseInvoice,
+  TransactionEndorseInvoice, InquireData,
   InquireInvoiceByKeyFields, InquirePOByKeyFields, Loanbyinv, Reqverinv,RejectEndorse,Myinterfacedata
 } from '../model';
 
@@ -139,5 +139,20 @@ export class PROCURETOPAYService {
       .catch(this.handleError);
   }
   // -------------------------------------------------- End  -----------------------------------------------------------
+
+  // --------------------------------------------- Check Data inquire-----------------------------------------------------------
+  InquireData(model: InquireData): Observable<any> {
+    const url = environment.backendbank + 'Getall';//asset.service.request
+    let headers = new Headers();      //http://localhost:7004/api/v1/Getall
+    this.createAuthorizationHeader(headers);
+    return this.http.post(url, model, {
+      headers: headers
+    }).map((res: Response) => {
+      return res.json();
+      // return res.json()[0];
+    })
+      .catch(this.handleError);
+  }
+  // -------------------------------------------------- End key -----------------------------------------------------------
 
 }
