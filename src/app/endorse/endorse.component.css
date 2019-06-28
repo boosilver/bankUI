@@ -7,6 +7,17 @@ element.style {
 .w3-ripple {
     transition: opacity 0s;
 }
+
+.font{
+    font-weight: bold;
+    color: rgb(60, 145, 194);
+  }
+  
+  #address{
+    white-space: pre-wrap;
+    /* width:100px; */
+    /* word-wrap:break-word; */
+  }
 .w3-btn, .w3-btn:link, .w3-btn:visited {color:#FFFFFF;background-color:#4CAF50}
 .w3-btn, .w3-button {
     border: none;

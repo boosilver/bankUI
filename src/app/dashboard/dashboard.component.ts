@@ -93,6 +93,8 @@ export class DashboardComponent implements OnInit {
           "LOAN_KEY": result.INFO.LOAN_KEY,
           "INVOICE_KEY": result.INFO.INVOICE_KEY,
           "PRICE_LOAN": result.INFO.PRICE_LOAN,
+          "DOC_LOAN": result.INFO.DOC_LOAN,
+
 
         }
 

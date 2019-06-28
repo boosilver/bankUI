@@ -30,12 +30,12 @@ export class EndorseComponent implements OnInit {
 
   openModal(template: EndorseComponent) {
     if (this.model.TO.trim() && this.model.DOC_LOAN.trim() && this.model.LOAN_KEY && this.model.PRICE_LOAN) {
-      this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+      this.modalRef = this.modalService.show(template, { class: 'modal-dialog-centered modal-sm fade show' });
     }
   }
 
 
-  confirm(): void {
+  confirm(resulttemplate: any,errortemplate: any): void {
     this.model.TO = this.model.TO.trim();
     this.model.DOC_LOAN = this.model.DOC_LOAN.trim();
     this.model.LOAN_KEY = this.model.LOAN_KEY;
@@ -48,19 +48,16 @@ export class EndorseComponent implements OnInit {
       .subscribe(
         sr => {
           this.loading = false;
-          let message = 'Success';
-          (<HTMLInputElement>document.getElementById('status')).value = message;
           console.log('reply:' + JSON.stringify(sr));
-          document.getElementById("statusfield").style.display = "block";
+          this.message = 'Endorse Success';
+          this.modalRef = this.modalService.show(resulttemplate, { class: 'modal-dialog-centered modal-md fade show' });
 
         },
         error => {
           this.loading = false;
-          let header = 'Error';
-          let message = error;
-          (<HTMLInputElement>document.getElementById('status')).value = message;
-          console.log('Error:' + message);
-          document.getElementById("statusfield").style.display = "block";
+          this.message = error;
+          console.log('Error:' + error);
+          this.modalRef = this.modalService.show(errortemplate, { class: 'modal-dialog-centered modal-lg fade show' });
 
         });
     this.message = 'Confirmed!';
@@ -70,5 +67,12 @@ export class EndorseComponent implements OnInit {
   decline(): void {
     this.message = 'Declined!';
     this.modalRef.hide();
+  }
+  Ok(): void {
+    this.message = 'Ok!';
+    this.modalRef.hide();
+    setTimeout(function () {
+      location.reload();
+    }, 1500); // 5000 milliseconds means 5 seconds.
   }
 }

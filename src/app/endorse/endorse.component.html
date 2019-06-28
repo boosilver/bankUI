@@ -8,14 +8,14 @@
 
     <div class="row">
       <div class="field-label col-md-6 mx-auto">
-        <label for="TO" class="text-muted">TO</label>
+        <label for="TO" class="text-muted">To</label>
         <input type="text" class="form-control border-bottom" required [(ngModel)]="model.TO" id="TO" name="TO">
       </div>
     </div>
 
     <div class="row">
       <div class="field-label col-md-6 mx-auto">
-        <label for="DOC_LOAN" class="text-muted">DOCUMENT LOAN</label>
+        <label for="DOC_LOAN" class="text-muted">Document Type</label>
         <select class="form-control" required [(ngModel)]="model.DOC_LOAN" [name]="DOC_LOAN" id="DOC_LOAN"
           [ngModelOptions]="{standalone: true}">
           <option value="PO">Purchase Order</option>
@@ -26,14 +26,14 @@
 
     <div class="row">
       <div class="field-label col-md-6 mx-auto">
-        <label for="LOAN_KEY" class="text-muted">LOAN KEY</label>
+        <label for="LOAN_KEY" class="text-muted">Loan Key</label>
         <input type="number" class="form-control " [(ngModel)]="model.LOAN_KEY" id="LOAN_KEY" name="LOAN_KEY" required>
       </div>
     </div>
 
     <div class="row">
       <div class="field-label col-md-6 mx-auto">
-        <label for="PRICE_LOAN" class="text-muted">PRICE FOR LOAN</label>
+        <label for="PRICE_LOAN" class="text-muted">Price for Loan</label>
         <input type="number" class="form-control border-bottom" required [(ngModel)]="model.PRICE_LOAN" id="PRICE_LOAN"
           name="PRICE_LOAN">
       </div>
@@ -51,29 +51,41 @@
 
     <ng-template #template>
       <div class="modal-body text-center">
-        <pre class="card card-block card-header">
-      <p>TO :{{this.model.TO.trim()}}</p>
-      <p>DOCUMENT LOAN :{{this.model.DOC_LOAN.trim()}}</p>
-      <p>LOAN KEY :{{this.model.LOAN_KEY}}</p>
-      <p>PRICE FOR LOAN :{{this.model.PRICE_LOAN}}</p>
+        <pre class="card card-block card-header text-left">
+      <p><span class="font">To :</span> {{this.model.TO.trim()}}</p>
+      <p><span class="font">Document Type :</span> {{this.model.DOC_LOAN.trim()}}</p>
+      <p><span class="font">Loan Key :</span> {{this.model.LOAN_KEY}}</p>
+      <p><span class="font">Price for Loan :</span> {{this.model.PRICE_LOAN}}</p>
     </pre>
         <p>Do you want to confirm?</p>
 
-        <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
-        <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+        <button type="button" class="btn btn-primary" (click)="confirm(resulttemplate,errortemplate)">Yes</button>
+        <button type="button" class="btn btn-default" (click)="decline()">No</button>
       </div>
     </ng-template>
     <!-- ------------------------------------------------------------------------------ -->
-
-
-    <div class="row" id='statusfield' style='display:none;'>
-      <div class="field-label col-md-12 mx-auto">
-        <label for="status" class="text-muted">Status</label>
-        <textarea style="border: none; background-color: white" class="form-control border-bottom" readonly id="status"
-          name="status"></textarea>
+    <br>
+    <ng-template #resulttemplate>
+      <div class="modal-body text-center">
+        <pre class="card card-block card-header text-left">
+            <p style="color:rgb(0, 0, 0); text-align: center " >{{message}}</p>
+              </pre>
+        <br>
+        <button type="button" class="btn btn-primary" (click)="Ok()">Ok</button>
       </div>
-    </div>
+    </ng-template>
 
+    <br>
+    <ng-template #errortemplate>
+      <div class="modal-body text-center">
+        <pre class="card card-block card-header text-left">
+            <p style="color:rgb(255, 0, 0); text-align: center" >error: {{message}}</p>
+              </pre>
+        <br>
+        <button type="button" class="btn btn-primary" (click)="Ok()">Ok</button>
+      </div>
+    </ng-template>
+    <!-- ------------------------------------------------------------------------------ -->
 
   </form>
 </div>

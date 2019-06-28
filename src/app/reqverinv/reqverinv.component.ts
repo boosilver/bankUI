@@ -15,6 +15,7 @@ export class ReqverinvComponent implements OnInit {
   modalRef: BsModalRef;
   bsModalRef: BsModalRef;
   message: string;
+  body: any;
 
   constructor(
     private modalService: BsModalService,
@@ -28,11 +29,11 @@ export class ReqverinvComponent implements OnInit {
   }
   openModal(template: ReqverinvComponent) {
     if (this.model.TO.trim() && this.model.DOC_LOAN.trim() && this.model.KEY && this.model.LOAN_KEY) {
-      this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+      this.modalRef = this.modalService.show(template, { class: 'modal-dialog-centered modal-sm fade show' });
     }
   }
 
-  confirm(): void {
+  confirm(resulttemplate: any,errortemplate: any): void {
     this.model.TO = this.model.TO.trim();
     this.model.DOC_LOAN = this.model.DOC_LOAN.trim();
     this.model.KEY = this.model.KEY;
@@ -45,21 +46,46 @@ export class ReqverinvComponent implements OnInit {
       .subscribe(
         sr => {
           this.loading = false;
-          let message = 'Success';
-          (<HTMLInputElement>document.getElementById('status')).value = message;
           console.log('reply:' + JSON.stringify(sr));
-          document.getElementById("statusfield").style.display = "block";
+          this.message = 'Request Success';
+          this.body = {
+            "DATE": sr.INFO.DATE,
+            "TO": sr.INFO.TO,
+            "FROM": (sr.INFO.FROM),
+            "TYPE": (sr.INFO.TYPE),
+            "PO_KEY": sr.INFO.PO_KEY,
+            "ADDRESS": sr.INFO.ADDRESS,
+            "EMAIL": sr.INFO.EMAIL,
+            "TEL_NUMBER": sr.INFO.TEL_NUMBER,
+            "DELIVERY_ADDRESS": sr.INFO.DELIVERY_ADDRESS,
+            "PRODUCT": sr.INFO.PRODUCT,
+            "NUM_PRODUCT": sr.INFO.NUM_PRODUCT,
+            "VALUE": sr.INFO.VALUE,
+            "PRICE": sr.INFO.PRICE,
+            "VAT": sr.INFO.VAT,
+            "TAX_ID": sr.INFO.TAX_ID,
+            "TOTAL_PRICE": sr.INFO.TOTAL_PRICE,
+            "DELIVERY_DATE": sr.INFO.DELIVERY_DATE,
+            "PAYMENT": sr.INFO.PAYMENT,
+            "DETAIL": sr.INFO.DETAIL,
+            "KEY": sr.KEY,
+            "BANK": sr.INFO.BANK,
+            "LOAN_AMOUNT": sr.INFO.LOAN_AMOUNT,
+            "INSTALLMENT": sr.INFO.INSTALLMENT,
+            "TOTAL_AMOUNT": sr.INFO.TOTAL_AMOUNT,
+            "LOAN_KEY": sr.INFO.LOAN_KEY,
+            "INVOICE_KEY": sr.INFO.INVOICE_KEY,
+    
+          }
+    
+          this.modalRef = this.modalService.show(resulttemplate, { class: 'modal-dialog-centered modal-md fade show' });
 
         },
         error => {
           this.loading = false;
-
-          let header = 'Error';
-          // this.progressDialog.close();
-          let message = error;
-          (<HTMLInputElement>document.getElementById('status')).value = message;
-          console.log('Error:' + message);
-          document.getElementById("statusfield").style.display = "block";
+          this.message = error;
+          console.log('Error:' + error);
+          this.modalRef = this.modalService.show(errortemplate, { class: 'modal-dialog-centered modal-lg fade show' });
 
         });
     this.message = 'Confirmed!';
@@ -68,6 +94,18 @@ export class ReqverinvComponent implements OnInit {
 
   decline(): void {
     this.message = 'Declined!';
+    this.modalRef.hide();
+  }
+  
+  Ok(): void {
+    this.message = 'Ok!';
+    this.modalRef.hide();
+    setTimeout(function () {
+      location.reload();
+    }, 1500); // 5000 milliseconds means 5 seconds.
+  }
+  OkNoRepage(): void {
+    this.message = 'Ok!';
     this.modalRef.hide();
   }
 }

@@ -1,5 +1,5 @@
 <div class="container">
-    <ngx-loading [show]="loading"></ngx-loading>
+  <ngx-loading [show]="loading"></ngx-loading>
   <br>
   <div class="form-group row">
     <H1>CREATE REQUEST VERIFY</H1>
@@ -8,14 +8,14 @@
 
     <div class="row">
       <div class="field-label col-md-6 mx-auto">
-        <label for="TO" class="text-muted">TO</label>
+        <label for="TO" class="text-muted">To</label>
         <input type="text" class="form-control border-bottom" required [(ngModel)]="model.TO" id="TO" name="TO">
       </div>
     </div>
 
     <div class="row">
       <div class="field-label col-md-6 mx-auto">
-        <label for="DOC_LOAN" class="text-muted">DOCUMENT LOAN</label>
+        <label for="DOC_LOAN" class="text-muted">Document Type</label>
         <select class="form-control" required [(ngModel)]="model.DOC_LOAN" [name]="DOC_LOAN" id="DOC_LOAN"
           [ngModelOptions]="{standalone: true}">
           <option value="PO">Purchase Order</option>
@@ -26,14 +26,14 @@
 
     <div class="row">
       <div class="field-label col-md-6 mx-auto">
-        <label for="KEY" class="text-muted">DOCUMENT KEY</label>
+        <label for="KEY" class="text-muted">Document Key</label>
         <input type="number" class="form-control " [(ngModel)]="model.KEY" id="KEY" name="KEY" required>
       </div>
     </div>
 
     <div class="row">
       <div class="field-label col-md-6 mx-auto">
-        <label for="LOAN_KEY" class="text-muted" required >LOAN KEY</label>
+        <label for="LOAN_KEY" class="text-muted" required>Loan Key</label>
         <input type="number" class="form-control " [(ngModel)]="model.LOAN_KEY" id="LOAN_KEY" name="LOAN_KEY">
       </div>
     </div>
@@ -50,29 +50,68 @@
 
     <ng-template #template>
       <div class="modal-body text-center">
-        <pre class="card card-block card-header">
-      <p>TO :{{this.model.TO.trim()}}</p>
-      <p>DOCUMENT LOAN :{{this.model.DOC_LOAN.trim()}}</p>
-      <p>KEY :{{this.model.KEY}}</p>
-      <p>LOAN KEY :{{this.model.LOAN_KEY}}</p>
+        <pre class="card card-block card-header text-left">
+      <p><span class="font">To :</span> {{this.model.TO.trim()}}</p>
+      <p><span class="font">Document Type :</span> {{this.model.DOC_LOAN.trim()}}</p>
+      <p><span class="font">Document Key :</span> {{this.model.KEY}}</p>
+      <p><span class="font">Loan Key :</span> {{this.model.LOAN_KEY}}</p>
     </pre>
         <p>Do you want to confirm?</p>
 
-        <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
-        <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+        <button type="button" class="btn btn-primary" (click)="confirm(resulttemplate,errortemplate)">Yes</button>
+        <button type="button" class="btn btn-default" (click)="decline()">No</button>
       </div>
     </ng-template>
     <!-- ------------------------------------------------------------------------------ -->
-
-
-    <div class="row" id='statusfield' style='display:none;'>
-      <div class="field-label col-md-12 mx-auto">
-        <label for="status" class="text-muted">Status</label>
-        <textarea style="border: none; background-color: white" class="form-control border-bottom" readonly id="status"
-          name="status"></textarea>
+    <br>
+    <ng-template #resulttemplate>
+      <div class="modal-body text-center">
+        <p style="color:rgb(0, 0, 0); text-align: center ">{{message}}</p>
+        <pre class="card card-block card-header text-left">
+        <p style="text-align: right; margin-right:3px; font-weight: bold; font-size:32" *ngIf="this.body.FROM">{{this.body.FROM}}</p>
+        <p style="text-align: right; margin-right:3px; font-weight: bold; font-size:32" *ngIf="this.body.TYPE">{{this.body.TYPE}}</p>
+        <p style="text-align: right;" *ngIf="this.body.KEY" ><span class="font">Document No :</span>{{this.body.KEY}}</p>
+        <p style="text-align: right;" *ngIf="this.body.PO_KEY"><span class="font">Reference No :</span>{{this.body.PO_KEY}}</p>
+        <p style="text-align: right;" *ngIf="this.body.DATE"><span class="font">Date :</span>{{this.body.DATE}}</p>
+        <hr>
+        <p *ngIf="this.body.TO" ><span class="font">To :</span>{{this.body.TO}}</p>
+        <p *ngIf="this.body.BANK"><span class="font">Bank :</span>{{this.body.BANK}}</p>
+        <p *ngIf="this.body.EMAIL"><span class="font">Email :</span>{{this.body.EMAIL}}</p>
+        <p *ngIf="this.body.TEL_NUMBER"><span class="font">Tel Number :</span>{{this.body.TEL_NUMBER}}</p>
+        <p *ngIf="this.body.TAX_ID"><span class="font">Tax ID :</span>{{this.body.TAX_ID}}</p>
+        <p id = "address" *ngIf="this.body.DELIVERY_ADDRESS"><span class="font">Delivery Address :</span>{{this.body.DELIVERY_ADDRESS}}</p>
+        <p *ngIf="this.body.DELIVERY_DATE"><span class="font">Delivery Date :</span>{{this.body.DELIVERY_DATE}}</p>
+        <p *ngIf="this.body.PAYMENT"><span class="font">Payment Date :</span>{{this.body.PAYMENT}}</p>
+        <p id = "address" *ngIf="this.body.ADDRESS"><span class="font">Address :</span>{{this.body.ADDRESS}}</p>
+        <p *ngIf="this.body.PRODUCT"><span class="font">Product :</span>{{this.body.PRODUCT}}</p>
+        <p *ngIf="this.body.NUM_PRODUCT"><span class="font">Number of Product :</span>{{this.body.NUM_PRODUCT}}</p>
+        <p *ngIf="this.body.VALUE"><span class="font">Value :</span>{{this.body.VALUE}}</p>
+        <p *ngIf="this.body.PRICE"><span class="font">Price :</span>{{this.body.PRICE}}</p>
+        <p *ngIf="this.body.VAT"><span class="font">VAT :</span>{{this.body.VAT}}</p>
+        <p *ngIf="this.body.TOTAL_PRICE"><span class="font">Total :</span>{{this.body.TOTAL_PRICE}}</p>
+        <p *ngIf="this.body.LOAN_AMOUNT"><span class="font">Loan Amount :</span>{{this.body.LOAN_AMOUNT}}</p>
+        <p *ngIf="this.body.INSTALLMENT"><span class="font">Installment period :</span>{{this.body.INSTALLMENT}}</p>
+        <p *ngIf="this.body.LOAN_AMOUNT"><span class="font">Loan Amount :</span>{{this.body.LOAN_AMOUNT}}</p>
+        <p *ngIf="this.body.PO_KEY"><span class="font">Purchase Order Key :</span>{{this.body.PO_KEY}}</p>
+        <p *ngIf="this.body.INVOICE_KEY"><span class="font">Invoice Key :</span>{{this.body.INVOICE_KEY}}</p>
+        <p *ngIf="this.body.LOAN_KEY"><span class="font">Loan Key :</span>{{this.body.LOAN_KEY}}</p>
+              </pre>
+        <br>
+        <button type="button" class="btn btn-primary" (click)="OkNoRepage()">Ok</button>
       </div>
-    </div>
+    </ng-template>
 
+    <br>
+    <ng-template #errortemplate>
+      <div class="modal-body text-center">
+        <pre class="card card-block card-header text-left">
+            <p style="color:rgb(255, 0, 0); text-align: center" >error: {{message}}</p>
+              </pre>
+        <br>
+        <button type="button" class="btn btn-primary" (click)="Ok()">Ok</button>
+      </div>
+    </ng-template>
+    <!-- ------------------------------------------------------------------------------ -->
 
   </form>
 </div>
