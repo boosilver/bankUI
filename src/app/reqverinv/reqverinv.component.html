@@ -97,7 +97,11 @@
         <p *ngIf="this.body.LOAN_KEY"><span class="font">Loan Key :</span>{{this.body.LOAN_KEY}}</p>
               </pre>
         <br>
-        <button type="button" class="btn btn-primary" (click)="OkNoRepage()">Ok</button>
+        <button type="button" class="btn btn-primary" (click)="Ok()">
+            <a style="color:white" [routerLink]="['/dashboard']">
+              Ok
+            </a>
+          </button>
       </div>
     </ng-template>
 
@@ -108,7 +112,7 @@
             <p style="color:rgb(255, 0, 0); text-align: center" >error: {{message}}</p>
               </pre>
         <br>
-        <button type="button" class="btn btn-primary" (click)="Ok()">Ok</button>
+        <button type="button" class="btn btn-primary" (click)="Oknorefresh()">Ok</button>
       </div>
     </ng-template>
     <!-- ------------------------------------------------------------------------------ -->

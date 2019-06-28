@@ -55,7 +55,7 @@ export class InquireData {
     const sample: InquireData = InquireData.empty();
 
     sample.user = 'themall';
-    sample.TYPE = 'PO';
+    sample.TYPE = 'ENDORSE_LOAN';
 
     return sample;
   }

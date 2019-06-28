@@ -50,31 +50,32 @@ export class ReqverinvComponent implements OnInit {
           this.message = 'Request Success';
           this.body = {
             "DATE": sr.INFO.DATE,
-            "TO": sr.INFO.TO,
             "FROM": (sr.INFO.FROM),
             "TYPE": (sr.INFO.TYPE),
-            "PO_KEY": sr.INFO.PO_KEY,
-            "ADDRESS": sr.INFO.ADDRESS,
-            "EMAIL": sr.INFO.EMAIL,
-            "TEL_NUMBER": sr.INFO.TEL_NUMBER,
-            "DELIVERY_ADDRESS": sr.INFO.DELIVERY_ADDRESS,
-            "PRODUCT": sr.INFO.PRODUCT,
-            "NUM_PRODUCT": sr.INFO.NUM_PRODUCT,
-            "VALUE": sr.INFO.VALUE,
-            "PRICE": sr.INFO.PRICE,
-            "VAT": sr.INFO.VAT,
-            "TAX_ID": sr.INFO.TAX_ID,
-            "TOTAL_PRICE": sr.INFO.TOTAL_PRICE,
-            "DELIVERY_DATE": sr.INFO.DELIVERY_DATE,
-            "PAYMENT": sr.INFO.PAYMENT,
-            "DETAIL": sr.INFO.DETAIL,
-            "KEY": sr.KEY,
             "BANK": sr.INFO.BANK,
-            "LOAN_AMOUNT": sr.INFO.LOAN_AMOUNT,
-            "INSTALLMENT": sr.INFO.INSTALLMENT,
-            "TOTAL_AMOUNT": sr.INFO.TOTAL_AMOUNT,
-            "LOAN_KEY": sr.INFO.LOAN_KEY,
-            "INVOICE_KEY": sr.INFO.INVOICE_KEY,
+
+            "TO": sr.INFO.PO.TO,
+            "PO_KEY": sr.INFO.PO.PO_KEY,
+            "ADDRESS": sr.INFO.PO.ADDRESS,
+            "EMAIL": sr.INFO.PO.EMAIL,
+            "TEL_NUMBER": sr.INFO.PO.TEL_NUMBER,
+            "TAX_ID": sr.INFO.PO.TAX_ID,
+            "DELIVERY_ADDRESS": sr.INFO.PO.DELIVERY_ADDRESS,
+            "PRODUCT": sr.INFO.PO.PRODUCT,
+            "NUM_PRODUCT": sr.INFO.PO.NUM_PRODUCT,
+            "VALUE": sr.INFO.PO.VALUE,
+            "PRICE": sr.INFO.PO.PRICE,
+            "VAT": sr.INFO.PO.VAT,
+            "TOTAL_PRICE": sr.INFO.PO.TOTAL_PRICE,
+            "DELIVERY_DATE": sr.INFO.PO.DELIVERY_DATE,
+            "PAYMENT": sr.INFO.PO.PAYMENT,
+            "DETAIL": sr.INFO.PO.DETAIL,
+            "KEY": sr.PO.KEY,
+            "LOAN_AMOUNT": sr.INFO.PO.LOAN_AMOUNT,
+            "INSTALLMENT": sr.INFO.PO.INSTALLMENT,
+            "TOTAL_AMOUNT": sr.INFO.PO.TOTAL_AMOUNT,
+            "LOAN_KEY": sr.INFO.PO.LOAN_KEY,
+            "INVOICE_KEY": sr.INFO.PO.INVOICE_KEY,
     
           }
     
@@ -100,11 +101,8 @@ export class ReqverinvComponent implements OnInit {
   Ok(): void {
     this.message = 'Ok!';
     this.modalRef.hide();
-    setTimeout(function () {
-      location.reload();
-    }, 1500); // 5000 milliseconds means 5 seconds.
   }
-  OkNoRepage(): void {
+  Oknorefresh(): void {
     this.message = 'Ok!';
     this.modalRef.hide();
   }

@@ -71,8 +71,9 @@ export class EndorseComponent implements OnInit {
   Ok(): void {
     this.message = 'Ok!';
     this.modalRef.hide();
-    setTimeout(function () {
-      location.reload();
-    }, 1500); // 5000 milliseconds means 5 seconds.
+  }
+  Oknorefresh(): void {
+    this.message = 'Ok!';
+    this.modalRef.hide();
   }
 }
