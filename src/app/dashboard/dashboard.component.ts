@@ -100,13 +100,15 @@ export class DashboardComponent implements OnInit {
         }
         if (result.INFO.TYPE == "ACCEPT") {
           this.showAccept = "showAccept"
-        }
-        else { this.showAccept = "" }
+        }  else { this.showAccept = "" }
 
-        if (result.INFO.TYPE == "ENDORSE_LOAN" || "LOAN_INVOICE" || "LOAN_PO" ) {
+        if (result.INFO.TYPE == "ENDORSE_LOAN" ) {
           this.showReject = "showReject"
-        }
-        else { this.showReject = "" }
+        } else if(result.INFO.TYPE == "LOAN_INVOICE"){
+          this.showReject = "showReject"
+        } else if(result.INFO.TYPE == "LOAN_PO"){
+          this.showReject = "showReject"
+        }   else { this.showReject = "" }
         // this.openModal(this.body)
         //document.getElementById("result").style.display = "block";
         // document.getElementById("result").style.display = "block";
@@ -215,5 +217,9 @@ export class DashboardComponent implements OnInit {
     setTimeout(function () {
       location.reload();
     }, 1500); // 5000 milliseconds means 5 seconds.
+  }
+  OknoR(): void {
+    this.message = 'Ok!';
+    this.modalRef.hide();
   }
 }
