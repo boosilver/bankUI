@@ -3,6 +3,7 @@ import { Reqverinv } from '.././model';
 import { PROCURETOPAYService } from '../service/procuretopay.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import {Util} from '../../util/util'
+import { st } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-reqverinv',
@@ -16,6 +17,7 @@ export class ReqverinvComponent implements OnInit {
   bsModalRef: BsModalRef;
   message: string;
   body: any;
+  showAccept: any;
 
   constructor(
     private modalService: BsModalService,
@@ -51,7 +53,7 @@ export class ReqverinvComponent implements OnInit {
           this.body = {
             "DATE": sr.INFO.DATE,
             "FROM": (sr.INFO.FROM),
-            "TYPE": (sr.INFO.TYPE),
+            "TYPE": sr.INFO.TYPE,
             "BANK": sr.INFO.BANK,
 
             "TO": sr.INFO.PO.TO,
@@ -76,9 +78,10 @@ export class ReqverinvComponent implements OnInit {
             "TOTAL_AMOUNT": sr.INFO.PO.TOTAL_AMOUNT,
             "LOAN_KEY": sr.INFO.PO.LOAN_KEY,
             "INVOICE_KEY": sr.INFO.PO.INVOICE_KEY,
-    
           }
-    
+        if (sr.INFO.FROM == "invoice"){
+          this.showAccept = "SHOWBUTTON"
+        }
           this.modalRef = this.modalService.show(resulttemplate, { class: 'modal-dialog-centered modal-md fade show' });
 
         },

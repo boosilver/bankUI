@@ -22,7 +22,8 @@ export class DashboardComponent implements OnInit {
   body: any;
   key: any;
   message: any;
-
+  showAccept: any;
+  showReject: any;
   constructor(
     private svc: PROCURETOPAYService,
     private modalService: BsModalService,
@@ -94,10 +95,13 @@ export class DashboardComponent implements OnInit {
           "INVOICE_KEY": result.INFO.INVOICE_KEY,
           "PRICE_LOAN": result.INFO.PRICE_LOAN,
           "DOC_LOAN": result.INFO.DOC_LOAN,
-
+          "DIFFERENT": result.INFO.DIFFERENT,
 
         }
-
+        if (result.INFO.DIFFERENT == "1") {
+          this.showAccept = "showAccept"
+        }
+        else { this.showReject = "showreject" }
         // this.openModal(this.body)
         //document.getElementById("result").style.display = "block";
         // document.getElementById("result").style.display = "block";
@@ -138,7 +142,7 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  async confirmreject(successrejecttemplate: any) {
+  async confirmreject(successtemplate: any,errortemplate: any) {
     console.log('saving draft ' + JSON.stringify(this.body));
     this.loading = true;
     this.modalRef.hide();
@@ -148,7 +152,7 @@ export class DashboardComponent implements OnInit {
           this.loading = false;
           console.log('saving draft ' + JSON.stringify(sr));
           this.message = 'Reject Success';
-          this.modalRef = this.modalService.show(successrejecttemplate, { class: 'modal-dialog-centered modal-md fade show' });
+          this.modalRef = this.modalService.show(successtemplate, { class: 'modal-dialog-centered modal-md fade show' });
 
         },
         error => {
@@ -156,10 +160,41 @@ export class DashboardComponent implements OnInit {
           let header = 'Error';
           this.message = error;
           console.log('Error:' + error);
-          this.modalRef = this.modalService.show(successrejecttemplate, { class: 'modal-dialog-centered modal-lg fade show' });
+          this.modalRef = this.modalService.show(errortemplate, { class: 'modal-dialog-centered modal-lg fade show' });
 
         });
     this.message = 'Reject Success!';
+  }
+  
+  async confirmcompletebutton(completetemplate: any) {
+    this.modalRef.hide();
+    console.log('Complete DATA');
+    this.modalRef = this.modalService.show(completetemplate, { class: 'modal-dialog-centered modal-md fade show' });
+
+  }
+
+  async confirmComplete(successtemplate: any,errortemplate: any) {
+    console.log('saving draft ' + JSON.stringify(this.body));
+    this.loading = true;
+    this.modalRef.hide();
+    await this.svc.RejectEndorse(this.body)
+      .subscribe(
+        sr => {
+          this.loading = false;
+          console.log('saving draft ' + JSON.stringify(sr));
+          this.message = 'Confirm Document Success';
+          this.modalRef = this.modalService.show(successtemplate, { class: 'modal-dialog-centered modal-md fade show' });
+
+        },
+        error => {
+          this.loading = false;
+          let header = 'Error';
+          this.message = error;
+          console.log('Error:' + error);
+          this.modalRef = this.modalService.show(errortemplate, { class: 'modal-dialog-centered modal-lg fade show' });
+
+        });
+    this.message = 'Confirm Success!';
   }
 
   decline(template: any): void {
