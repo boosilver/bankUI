@@ -98,10 +98,15 @@ export class DashboardComponent implements OnInit {
           "DIFFERENT": result.INFO.DIFFERENT,
 
         }
-        if (result.INFO.DIFFERENT == "1") {
+        if (result.INFO.TYPE == "ACCEPT") {
           this.showAccept = "showAccept"
         }
-        else { this.showReject = "showreject" }
+        else { this.showAccept = "" }
+
+        if (result.INFO.TYPE == "ENDORSE_LOAN" || "LOAN_INVOICE" || "LOAN_PO" ) {
+          this.showReject = "showReject"
+        }
+        else { this.showReject = "" }
         // this.openModal(this.body)
         //document.getElementById("result").style.display = "block";
         // document.getElementById("result").style.display = "block";
@@ -112,7 +117,7 @@ export class DashboardComponent implements OnInit {
         // BY ID
         // var element = document.getElementById("id01");
         // element.innerHTML = this.responseValue;
-        this.modalRef = this.modalService.show(template, { class: 'modal-md' });
+        this.modalRef = this.modalService.show(template, { class: 'modal-dialog-centered modal-md fade show' });
 
       },
         (err) => {
@@ -200,7 +205,7 @@ export class DashboardComponent implements OnInit {
   decline(template: any): void {
     this.message = 'Declined!';
     this.modalRef.hide();
-    this.modalRef = this.modalService.show(template, { class: 'modal-dialog-centered modal-lg fade show' });
+    this.modalRef = this.modalService.show(template, { class: 'modal-dialog-centered modal-md fade show' });
 
   }
 

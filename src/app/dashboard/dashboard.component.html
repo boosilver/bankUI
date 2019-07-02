@@ -9,7 +9,7 @@
     <div class="col-sm-6 col-lg-3">
       <div class="brand-card">
         <div class="brand-card-header bg-po">
-          <img src="../../assets/images/boss.jpg" height="42" width="42">
+          <img src="../../assets/images/Loan.png" height="42" width="42">
           <!-- <i class="fa fa-po"></i>
           <div class="chart-wrapper">
             <canvas id="social-box-chart-1" height="90"></canvas>
@@ -33,6 +33,7 @@
     <div class="col-sm-6 col-lg-3">
       <div class="brand-card">
         <div class="brand-card-header bg-invoice">
+          <img src="../../assets/images/Loan_wait.png" height="42" width="42">
           <!-- <i class="fa fa-invoice"></i>
           <div class="chart-wrapper">
             <canvas id="social-box-chart-1" height="90"></canvas>
@@ -56,6 +57,7 @@
     <div class="col-sm-6 col-lg-3">
       <div class="brand-card">
         <div class="brand-card-header bg-success">
+          <img src="../../assets/images/Endorse.png" height="42" width="42">
           <!-- <i class="fa fa-success"></i>
           <div class="chart-wrapper">
             <canvas id="social-box-chart-1" height="90"></canvas>
@@ -79,6 +81,7 @@
     <div class="col-sm-6 col-lg-3">
       <div class="brand-card">
         <div class="brand-card-header bg-wait">
+          <img src="../../assets/images/endorse_wait.png" height="42" width="42">
           <!-- <i class="fa fa-wait"></i>
           <div class="chart-wrapper">
             <canvas id="social-box-chart-1" height="90"></canvas>
@@ -195,59 +198,60 @@
         <!-- Complete button -->
         <button *ngIf="this.showAccept" style="background-color: rgb(255, 255, 255); color:white;" type="button"
           class="btn btn-primary" (click)="confirmcompletebutton(completetemplate)">Complete</button>
+        <!-- Reject button -->
+        <button *ngIf="this.showReject" style="background-color: red; color:white;" type="button"
+          class="btn btn-default" (click)="confirm(rejecttemplate)">reject</button>
       </div>
-      <!-- Reject button -->
-      <button *ngIf="this.showReject" style="background-color: red; color:white;" type="button" class="btn btn-default"
-        (click)="confirm(rejecttemplate)">reject</button>
-  </div>
-  </ng-template>
+    </ng-template>
 
-  <!-- Reject template popup-->
-  <ng-template style="display: block" #rejecttemplate>
-    <div class="modal-body text-center">
-      <pre class="card card-block card-header text-left">
+    <!-- Reject template popup-->
+    <ng-template style="display: block" #rejecttemplate>
+      <div class="modal-body text-center">
+        <pre class="card card-block card-header text-left">
           <p style="color:red; text-align: center">If you reject your transaction are delete and can't use</p>
           <p style="color:red; text-align: center">Do you want to reject?</p>
             </pre>
 
-      <button type="button" class="btn btn-primary" (click)="confirmreject(successtemplate)">Yes</button>
-      <button type="button" class="btn btn-default" (click)="decline(template)">No</button>
-    </div>
-  </ng-template>
-  <!-- End popup -->
+        <button type="button" class="btn btn-primary"
+          (click)="confirmreject(successtemplate,errortemplate)">Yes</button>
+        <button type="button" class="btn btn-default" (click)="decline(template)">No</button>
+      </div>
+    </ng-template>
+    <!-- End popup -->
 
-  <!-- Complete template popup-->
-  <ng-template style="display: block" #completetemplate>
-    <div class="modal-body text-center">
-      <pre class="card card-block card-header text-left">
+    <!-- Complete template popup-->
+    <ng-template style="display: block" #completetemplate>
+      <div class="modal-body text-center">
+        <pre class="card card-block card-header text-left">
           <p style="color:rgb(0, 0, 0); text-align: center">Do you want to complete this Document?</p>
             </pre>
-      <button type="button" class="btn btn-primary" (click)="confirmComplete(successtemplate)">Yes</button>
-      <button type="button" class="btn btn-default" (click)="decline(template)">No</button>
-    </div>
-  </ng-template>
-  <!-- End popup -->
+        <button type="button" class="btn btn-primary"
+          (click)="confirmComplete(successtemplate,errortemplate)">Yes</button>
+        <button type="button" class="btn btn-default" (click)="decline(template)">No</button>
+      </div>
+    </ng-template>
+    <!-- End popup -->
 
-  <!-- successtemplate popup -->
-  <ng-template #successtemplate>
-    <div class="modal-body text-center">
-      <pre class="card card-block card-header text-left">
+    <!-- successtemplate popup -->
+    <ng-template #successtemplate>
+      <div class="modal-body text-center">
+        <pre class="card card-block card-header text-left">
             <p style="color:rgb(0, 0, 0); text-align: center" >{{message}}</p>
               </pre>
-      <button type="button" class="btn btn-primary" (click)="Ok()">Ok</button>
-    </div>
-  </ng-template>
-  <!-- End popup -->
+        <button type="button" class="btn btn-primary" (click)="Ok()">Ok</button>
+      </div>
+    </ng-template>
+    <!-- End popup -->
 
-  <!-- error popup -->
-  <ng-template #errortemplate>
-    <div class="modal-body text-center">
-      <pre class="card card-block card-header text-left">
+    <!-- error popup -->
+    <ng-template #errortemplate>
+      <div class="modal-body text-center">
+        <pre class="card card-block card-header text-left">
             <p style="color:red; text-align: center" >{{message}}</p>
               </pre>
-      <button type="button" class="btn btn-primary" (click)="decline()">Ok</button>
-    </div>
-  </ng-template>
-  <!-- End popup -->
-</div>
+        <button type="button" class="btn btn-primary" (click)="decline()">Ok</button>
+      </div>
+    </ng-template>
+    <!-- End popup -->
+  </div>
 </div>
