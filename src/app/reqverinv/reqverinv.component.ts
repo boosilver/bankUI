@@ -72,7 +72,6 @@ export class ReqverinvComponent implements OnInit {
             "DELIVERY_DATE": sr.INFO.PO.DELIVERY_DATE,
             "PAYMENT": sr.INFO.PO.PAYMENT,
             "DETAIL": sr.INFO.PO.DETAIL,
-            "KEY": sr.PO.KEY,
             "LOAN_AMOUNT": sr.INFO.PO.LOAN_AMOUNT,
             "INSTALLMENT": sr.INFO.PO.INSTALLMENT,
             "TOTAL_AMOUNT": sr.INFO.PO.TOTAL_AMOUNT,
