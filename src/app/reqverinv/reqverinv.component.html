@@ -74,6 +74,7 @@
         <p style="text-align: right;" *ngIf="this.body.PO_KEY"><span class="font">Reference No :</span>{{this.body.PO_KEY}}</p>
         <p style="text-align: right;" *ngIf="this.body.DATE"><span class="font">Date :</span>{{this.body.DATE}}</p>
         <hr>
+        <p *ngIf="this.body.DOCTYPE" ><span class="font">Document Type :</span>{{this.body.DOCTYPE}}</p>
         <p *ngIf="this.body.TO" ><span class="font">To :</span>{{this.body.TO}}</p>
         <p *ngIf="this.body.BANK"><span class="font">Bank :</span>{{this.body.BANK}}</p>
         <p *ngIf="this.body.EMAIL"><span class="font">Email :</span>{{this.body.EMAIL}}</p>

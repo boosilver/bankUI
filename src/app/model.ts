@@ -54,7 +54,7 @@ export class InquireData {
   static sampleSubmitSr(): InquireData {
     const sample: InquireData = InquireData.empty();
 
-    sample.user = 'themall';
+    sample.user = 'companya';
     sample.TYPE = 'ENDORSE_LOAN';
 
     return sample;
@@ -105,11 +105,11 @@ export class Loanbyinv {
   static sampleSubmitSr(): Loanbyinv {
     const sample: Loanbyinv = Loanbyinv.empty();
 
-    sample.BANK = 'bank';
-    sample.FROM = 'lotus';
+    sample.BANK = 'banka';
+    sample.FROM = 'companya';
     sample.DOC_LOAN = 'PO';
-    sample.KEY = '000';
-    sample.LOAN_KEY = '00';
+    sample.KEY = '100';
+    sample.LOAN_KEY = '100';
 
     return sample;
   }
@@ -135,10 +135,10 @@ export class Reqverinv {
   static sampleSubmitSr(): Reqverinv {
     const sample: Reqverinv = Reqverinv.empty();
 
-    sample.TO = 'lotus';
+    sample.TO = 'companya';
     sample.DOC_LOAN = 'PO';
-    sample.KEY = '123';
-    sample.LOAN_KEY = '00';
+    sample.KEY = '100';
+    sample.LOAN_KEY = '100';
 
     return sample;
   }
@@ -164,9 +164,9 @@ export class TransactionEndorseInvoice {
   static sampleSubmitSr(): TransactionEndorseInvoice {
     const sample: TransactionEndorseInvoice = TransactionEndorseInvoice.empty();
 
-    sample.TO = 'themall';
+    sample.TO = 'companya';
     sample.DOC_LOAN = 'PO';
-    sample.LOAN_KEY = '00';
+    sample.LOAN_KEY = '100';
     sample.PRICE_LOAN = '40';
 
     return sample;
@@ -191,9 +191,9 @@ export class RejectEndorse {
   static sampleSubmitSr(): RejectEndorse {
     const sample: RejectEndorse = RejectEndorse.empty();
 
-    sample.TO = 'themall';
+    sample.TO = 'companya';
     sample.DOC_LOAN = 'PO';
-    sample.LOAN_KEY = '00';
+    sample.LOAN_KEY = '100';
 
     return sample;
   }

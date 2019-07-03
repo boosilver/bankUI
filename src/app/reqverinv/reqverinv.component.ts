@@ -56,6 +56,7 @@ export class ReqverinvComponent implements OnInit {
             "TYPE": sr.INFO.TYPE,
             "BANK": sr.INFO.BANK,
 
+            "DOCTYPE": sr.INFO.PO.TYPE,
             "TO": sr.INFO.PO.TO,
             "PO_KEY": sr.INFO.PO.PO_KEY,
             "ADDRESS": sr.INFO.PO.ADDRESS,
