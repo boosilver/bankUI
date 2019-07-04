@@ -162,6 +162,8 @@
     </table>
     <ng-template #template>
       <div class="modal-body text-center">
+          <p id="closeclick" style="text-align: right" (click)="decline()"><img src="../../assets/images/cancel.png"
+            height="20" width="20"></p>
         <pre class="card card-block card-header text-left">
         <p style="text-align: right; margin-right:3px; font-weight: bold; font-size:32" *ngIf="this.body.FROM">{{this.body.FROM}}</p>
         <p style="text-align: right; margin-right:3px; font-weight: bold; font-size:32" *ngIf="this.body.TYPE">{{this.body.TYPE}}</p>

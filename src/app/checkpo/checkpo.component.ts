@@ -52,6 +52,15 @@ async onSubmit() {
       this.Inquire$ = result;
       // console.log(this.Inquire$.DASHBOARD_LIST, "ddddddddddddddd")
       this.loading = false;
+      for (let i = 0; i < result.DASHBOARD_LIST.length; i++) {
+        if (result.DASHBOARD_LIST[i].STATUS == "REJECT") {
+          result.DASHBOARD_LIST[i].SHOW_REJECT = true;
+        } else if (result.DASHBOARD_LIST[i].STATUS == "WAIT") {
+          result.DASHBOARD_LIST[i].SHOW_WAIT = true;
+        } else if (result.DASHBOARD_LIST[i].STATUS == "COMPLETE") {
+          result.DASHBOARD_LIST[i].SHOW_COMPLETE = true;
+        }
+      }
       console.log('result : ' + JSON.stringify(result));
       this.jasontree = JSON.stringify(result);
       this.responseValue = []; //new Array(result[0].INVOICE)

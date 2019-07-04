@@ -68,7 +68,9 @@
           <td>{{key.DATE}}</td>
           <td>{{key.TYPE}}</td>
           <td>
-            <span class="badge badge-success">{{key.STATUS}}</span>
+              <span *ngIf="key.SHOW_COMPLETE" class="badge badge-success">{{key.STATUS}}</span>
+            <span *ngIf="key.SHOW_WAIT" class="badge badge-warning">{{key.STATUS}}</span>
+            <span *ngIf="key.SHOW_REJECT" class="badge badge-danger">{{key.STATUS}}</span>
           </td>
         </tr>
         <!-- <tr>

@@ -54,7 +54,9 @@
   font-weight: bold;
   color: rgb(60, 145, 194);
 }
-
+#closeclick{
+  cursor : pointer;
+ }
 #address{
   white-space: pre-wrap;
   /* width:100px; */

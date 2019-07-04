@@ -230,5 +230,8 @@ export interface DashboardList {
   KEY: string
   LOAN_KEY: string
   STATUS: string
+  SHOW_REJECT: boolean
+  SHOW_WAIT: boolean
+  SHOW_COMPLETE: boolean
 }
 // ------------------------------------------------- END ---------------------------------------------------------
